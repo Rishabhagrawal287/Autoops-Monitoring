@@ -1,0 +1,4 @@
+psutil==7.2.2
+PyYAML==6.0.3
+schedule-1.2.2
+requests-2.32.5

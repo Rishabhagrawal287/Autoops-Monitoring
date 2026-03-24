@@ -1,0 +1,12 @@
+logger:
+  level: DEBUG
+  max_size_mb: 2
+  console: true
+
+monitor:
+  report_dir: reports
+
+thresholds:
+  cpu: 90
+  memory: 90
+  disk: 95
