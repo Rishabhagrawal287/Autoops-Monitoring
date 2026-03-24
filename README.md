@@ -115,4 +115,4 @@ npm run dev
 
 ## 👨‍💻 Author
 
-Rishi — Full Stack Developer (AI + Cloud + Systems)
+Rishabh — Full Stack Developer (AI + Cloud + Systems)
