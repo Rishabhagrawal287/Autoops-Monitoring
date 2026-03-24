@@ -19,19 +19,17 @@ AutoOps is a real-time AIOps-inspired monitoring system that tracks system perfo
 
 ## 🏗️ Architecture
 
-Frontend (React)
-
-⬇
-
-WebSocket + REST API
-
-⬇
-
+User Browser
+      |
+React Dashboard
+      |
 FastAPI Backend
-
-⬇
-
-SQLite Database
+      |
+(WebSocket | REST | Prometheus)
+      |
+SQLite DB
+      |git init
+System Metrics (psutil)
 
 ---
 
