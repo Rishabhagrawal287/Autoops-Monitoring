@@ -1,21 +1,32 @@
-from sqlalchemy import Column, Integer, Float, DateTime, String
-from datetime import datetime, timezone
+from sqlalchemy import Column, Integer, Float, String, DateTime
+from datetime import datetime
 from database import Base
 
 class Metrics(Base):
-
     __tablename__ = "metrics"
+    id          = Column(Integer, primary_key=True, index=True)
+    server_name = Column(String)
+    cpu         = Column(Float)
+    memory      = Column(Float)
+    disk        = Column(Float)
+    timestamp   = Column(DateTime, default=datetime.utcnow)
 
-    id = Column(Integer, primary_key=True, index=True)
+class ServerStatus(Base):
+    __tablename__ = "server_status"
+    id          = Column(Integer, primary_key=True, index=True)
+    server_name = Column(String, unique=True, index=True)
+    last_seen   = Column(DateTime, default=datetime.utcnow)
 
-    server_name = Column(String, index=True)
+class Alert(Base):
+    __tablename__ = "alerts"
+    id          = Column(Integer, primary_key=True, index=True)
+    server_name = Column(String)
+    message     = Column(String)
+    timestamp   = Column(DateTime, default=datetime.utcnow)
 
-    cpu = Column(Float)
-    memory = Column(Float)
-    disk = Column(Float)
-
-    timestamp = Column(
-        DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
-        index=True
-    )
+class HealingAction(Base):
+    __tablename__ = "healing_actions"
+    id          = Column(Integer, primary_key=True, index=True)
+    server_name = Column(String)
+    action      = Column(String)
+    timestamp   = Column(DateTime, default=datetime.utcnow)

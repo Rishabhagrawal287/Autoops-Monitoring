@@ -1,34 +1,36 @@
-import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 function DiskChart({ disk }) {
-
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-
-    const updateChart = () => {
-      setData((prev) => [
-        ...prev.slice(-20),
-        { time: new Date().toLocaleTimeString(), disk }
-      ]);
-    };
-
-    const timer = setTimeout(updateChart, 0);
-
-    return () => clearTimeout(timer);
-
-  }, [disk]);
+  if (data.length === 0 || data[data.length - 1].disk !== disk) {
+    const newData = [
+      ...data.slice(-20),
+      {
+        time: new Date().toLocaleTimeString(),
+        disk: disk,
+      },
+    ];
+    setData(newData);
+  }
 
   return (
     <div>
       <h3>Disk Usage</h3>
-
-      <LineChart width={400} height={200} data={data}>
-        <XAxis dataKey="time"/>
-        <YAxis/>
-        <Tooltip/>
-        <Line type="monotone" dataKey="disk"/>
+      <LineChart width={300} height={200} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="time" hide />
+        <YAxis domain={[0, 100]} />
+        <Tooltip />
+        <Line type="monotone" dataKey="disk" stroke="#ff7300" dot={false} />
       </LineChart>
     </div>
   );

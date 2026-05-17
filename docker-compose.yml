@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  autoops-backend:
+    image: autoops-backend
+    container_name: autoops-backend
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+
+volumes:
+  autoops-db:
+  autoops-logs:

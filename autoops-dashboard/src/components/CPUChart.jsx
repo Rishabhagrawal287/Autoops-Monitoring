@@ -1,34 +1,37 @@
-import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 function CPUChart({ cpu }) {
-
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-
-    const updateChart = () => {
-      setData((prev) => [
-        ...prev.slice(-20),
-        { time: new Date().toLocaleTimeString(), cpu }
-      ]);
-    };
-
-    const timer = setTimeout(updateChart, 0);
-
-    return () => clearTimeout(timer);
-
-  }, [cpu]);
+  // ✅ SAFE STATE UPDATE (NO useEffect)
+  if (data.length === 0 || data[data.length - 1].cpu !== cpu) {
+    const newData = [
+      ...data.slice(-20),
+      {
+        time: new Date().toLocaleTimeString(),
+        cpu: cpu,
+      },
+    ];
+    setData(newData);
+  }
 
   return (
     <div>
       <h3>CPU Usage</h3>
-
-      <LineChart width={400} height={200} data={data}>
-        <XAxis dataKey="time"/>
-        <YAxis/>
-        <Tooltip/>
-        <Line type="monotone" dataKey="cpu"/>
+      <LineChart width={300} height={200} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="time" hide />
+        <YAxis domain={[0, 100]} />
+        <Tooltip />
+        <Line type="monotone" dataKey="cpu" stroke="#8884d8" dot={false} />
       </LineChart>
     </div>
   );

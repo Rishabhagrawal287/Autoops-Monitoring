@@ -1,0 +1,13 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.git/
+*.db
+logs/
+node_modules/
+autoops-dashboard/
+docs/
+*.md
