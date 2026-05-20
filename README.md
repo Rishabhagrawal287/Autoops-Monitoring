@@ -9,20 +9,12 @@
 ![Docker](https://img.shields.io/badge/Docker-ready-2496ed)
 ![Netlify](https://img.shields.io/badge/Netlify-deployed-00c7b7)
 
-**Live Demo:** [link text](https://lighthearted-begonia-4340cd.netlify.app)
+**Live Demo:** [link text]https://lighthearted-begonia-4340cd.netlify.app
 
----
-
-## Screenshots
-
-| Dark Theme | Light Theme |
-|-------------|-------------|
-| ![Dark Theme](assets/screenshots/dark.png) | ![Light Theme](assets/screenshots/light.png) |
-
----
 
 ## Architecture
 
+```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        AutoOps Platform                         │
 │                                                                 │
@@ -58,6 +50,7 @@
 │                            │  Dark/Light     │                  │
 │                            └─────────────────┘                  │
 └─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -112,6 +105,7 @@
 
 ## Project Structure
 
+```
 AutoOps/
 ├── autoops/
 │   ├── api/
@@ -146,6 +140,7 @@ AutoOps/
 │   ├── architecture.png
 │   └── screenshots/
 └── .gitignore
+```
 
 ---
 
